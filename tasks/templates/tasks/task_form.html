@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Görev Formu</title>
+</head>
+<body>
+    <h1>Görev Formu</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Kaydet</button>
+    </form>
+    <a href="{% url 'task_list' %}">Görev Listesine Geri Dön</a>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Görev Listesi - Eisenhower Matrisi</title>
+    <style>
+        .matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            height: 100vh;
+        }
+        .matrix div {
+            border: 1px solid #000;
+            padding: 10px;
+        }
+        .matrix .do { background-color: #ffdddd; }
+        .matrix .decide { background-color: #ffffcc; }
+        .matrix .delegate { background-color: #ddffdd; }
+        .matrix .delete { background-color: #ddddff; }
+        .completed-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Görev Listesi - Eisenhower Matrisi</h1>
+    <a class="completed-link" href="{% url 'completed_tasks' %}">Tamamlanan Görevler</a>
+    <div class="matrix">
+        <div class="do">
+            <h2>Acil ve Önemli (Do)</h2>
+            <ul>
+                {% for task in do_tasks %}
+                <li>
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}</p>
+                    <p>Durum: {{ task.completed|yesno:"Tamamlandı,Tamamlanmadı" }}</p>
+                    <a href="{% url 'task_update' task.id %}">Düzenle</a>
+                    <a href="{% url 'task_toggle_complete' task.id %}">
+                        {% if task.completed %}Yeniden Aç{% else %}Tamamla{% endif %}
+                    </a>
+                    <a href="{% url 'task_delete' task.id %}">Sil</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="decide">
+            <h2>Acil Değil ama Önemli (Decide)</h2>
+            <ul>
+                {% for task in decide_tasks %}
+                <li>
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}</p>
+                    <p>Durum: {{ task.completed|yesno:"Tamamlandı,Tamamlanmadı" }}</p>
+                    <a href="{% url 'task_update' task.id %}">Düzenle</a>
+                    <a href="{% url 'task_toggle_complete' task.id %}">
+                        {% if task.completed %}Yeniden Aç{% else %}Tamamla{% endif %}
+                    </a>
+                    <a href="{% url 'task_delete' task.id %}">Sil</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="delegate">
+            <h2>Acil ama Önemsiz (Delegate)</h2>
+            <ul>
+                {% for task in delegate_tasks %}
+                <li>
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}</p>
+                    <p>Durum: {{ task.completed|yesno:"Tamamlandı,Tamamlanmadı" }}</p>
+                    <a href="{% url 'task_update' task.id %}">Düzenle</a>
+                    <a href="{% url 'task_toggle_complete' task.id %}">
+                        {% if task.completed %}Yeniden Aç{% else %}Tamamla{% endif %}
+                    </a>
+                    <a href="{% url 'task_delete' task.id %}">Sil</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="delete">
+            <h2>Acil Değil ve Önemsiz (Delete)</h2>
+            <ul>
+                {% for task in delete_tasks %}
+                <li>
+                    <h3>{{ task.title }}</h3>
+                    <p>{{ task.description }}</p>
+                    <p>Durum: {{ task.completed|yesno:"Tamamlandı,Tamamlanmadı" }}</p>
+                    <a href="{% url 'task_update' task.id %}">Düzenle</a>
+                    <a href="{% url 'task_toggle_complete' task.id %}">
+                        {% if task.completed %}Yeniden Aç{% else %}Tamamla{% endif %}
+                    </a>
+                    <a href="{% url 'task_delete' task.id %}">Sil</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

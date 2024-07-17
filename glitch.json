@@ -1,0 +1,13 @@
+{
+  "install": "bash start.sh",
+  "start": "gunicorn task_manager.wsgi --log-file -",
+  "watch": {
+    "ignore": ["\\.pyc$", "\\.swp$", "\\.sqlite3$"],
+    "install": {
+      "include": ["requirements.txt"]
+    },
+    "restart": {
+      "include": ["*.py", "templates/**/*.html"]
+    }
+  }
+}

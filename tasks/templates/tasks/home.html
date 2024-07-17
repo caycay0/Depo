@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ana Sayfa</title>
+    <style>
+        .links {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+        .links a {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Görev Yönetim Sistemi Ana Sayfa</h1>
+    <div class="links">
+        <a href="{% url 'task_list' %}">Görev Listesi</a>
+        <a href="{% url 'completed_tasks' %}">Tamamlanan Görevler</a>
+        <a href="{% url 'task_create' %}">Yeni Görev Ekle</a>
+        <a href="{% url 'register' %}">Kayıt Ol</a>
+        <a href="{% url 'login' %}">Giriş Yap</a>
+        <a href="/admin/">Admin Paneli</a>
+    </div>
+</body>
+</html>

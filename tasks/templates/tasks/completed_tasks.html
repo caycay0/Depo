@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tamamlanan Görevler</title>
+</head>
+<body>
+    <h1>Tamamlanan Görevler</h1>
+    <a href="{% url 'task_list' %}">Görev Listesine Geri Dön</a>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <h3>{{ task.title }}</h3>
+            <p>{{ task.description }}</p>
+            <p>Durum: {{ task.completed|yesno:"Tamamlandı,Tamamlanmadı" }}</p>
+            <a href="{% url 'task_update' task.id %}">Düzenle</a>
+            <a href="{% url 'task_toggle_complete' task.id %}">Yeniden Aç</a>
+            <a href="{% url 'task_delete' task.id %}">Sil</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
